@@ -1,17 +1,52 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+package guessmynumber;
 
-# Custom for Visual Studio
-*.cs     diff=csharp
+import java.util.Random;
+import java.util.Scanner;
 
-# Standard to msysgit
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+public class GuessTheNumber {
+
+    int thenumber;
+    int max;
+    Scanner scanner = new Scanner(System.in);
+
+    public GuessTheNumber() {
+        Random rand = new Random();
+        max = 100;
+        thenumber = Math.abs(rand.nextInt()) % (max + 1);
+    }
+
+    public void play() {
+        while (true) {
+            int move = scanner.nextInt();
+            if (move > thenumber) {
+                System.out.println("Your number is too big");
+            } else if (move < thenumber) {
+                System.out.println("Your number is too small");
+            } else {
+                System.out.println("Your guess is right.. YOU NAILED IT....");
+                break;
+            }
+
+        }
+    }
+
+    public static void howbigismynumber(int x) {
+        if (x >= 0 && x <= 10) {
+            System.out.println("Our number is pretty small");
+        } else if (x >= 11 && x <= 100) {
+            System.out.println("Our number is pretty big");
+        } else {
+            System.out.println("Our number is out of range");
+        }
+    }
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+
+        GuessTheNumber guessgame = new GuessTheNumber();
+        System.out.println("Welcome to my impossible game."+"Just enter a number between 8 and "+ guessgame.max + "just get started and type a number"); 
+        guessgame.play();
+
+    }
+
+}
